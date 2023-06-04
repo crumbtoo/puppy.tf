@@ -7,6 +7,16 @@
         "sourceMap": true,
         "lib": [],
         "outDir": "./dist/",
+
+		/* type checking */
+        "strict": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "strictFunctionTypes": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true
     },
     "exclude": [
         "node_modules",
