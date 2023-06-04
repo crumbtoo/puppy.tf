@@ -1,3 +1,6 @@
+// declare var require: any;
+// declare var process: any;
+
 // import { Client } from "discordx"
 const { Client, Events, GatewayIntentBits } = require('discord.js');
 require('dotenv/config');

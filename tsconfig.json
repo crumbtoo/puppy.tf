@@ -1,16 +1,24 @@
 {
+	"files": [
+		"src/main.ts"
+	],
+
     "compilerOptions": {
         "moduleResolution": "node",
         "module": "CommonJS",
-        "strict": true,
-        "target": "ES6",
+        "target": "es2015",
         "sourceMap": true,
         "watch": true,
-        "lib": [],
-        "outDir": "./dist/",
-    },
-    "exclude": [
-        "node_modules",
-        "dist"
-    ],
+        "outDir": "./build/",
+
+        /* type checking */
+        "strict": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "strictFunctionTypes": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true
+    }
 }
