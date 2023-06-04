@@ -8,8 +8,8 @@ client.once(Events.ClientReady, (c: typeof Client) => {
 	console.log(`Ready, logged in as ${c.user.name}`);
 });
 
-if (process.env["TOKEN"] === undefined)
-	throw "set client token w/ $TOKEN (including the \"Bot \")"
+if(process.env["TOKEN"] === undefined)
+	throw "set client token w/ $TOKEN (including the \"Bot \")";
 else
 	client.login(process.env["TOKEN"]);
 
