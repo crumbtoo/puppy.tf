@@ -3,12 +3,13 @@
 
 // import { Client } from "discordx"
 const { Client, Events, GatewayIntentBits } = require('discord.js');
+const chalk = require("chalk")
 require('dotenv/config');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.once(Events.ClientReady, (c: typeof Client) => {
-	console.log(`Ready, logged in as ${c.user.name}`);
+	console.log(`${chalk.yellow("✨ Ready")}, logged in as ${chalk.blue(c.user.username)}`);
 });
 
 if(process.env["TOKEN"] === undefined)
