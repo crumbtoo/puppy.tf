@@ -1,6 +1,7 @@
 build/
 node_modules/
-dist/
 yarn.lock
 package-lock.json
 .env
+dist/
+yarn-error.log
