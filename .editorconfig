@@ -1,5 +1,10 @@
 root = true
 
+# we do it unix style babyyyyy
+[*]
+end_of_line = lf
+insert_final_newline = true
+
 [**.ts]
 indent_style = space
 indent_size = 4
