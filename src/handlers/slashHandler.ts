@@ -1,6 +1,6 @@
 import { Routes } from "discord-api-types/v9";
 import { REST } from "@discordjs/rest";
-// require('dotenv/config');
+import 'dotenv/config';
 import { HighClient } from "../util/objects.js";
 import { CommandInteraction, CacheType, InteractionType } from "discord.js";
 
@@ -8,19 +8,23 @@ import { ContextMenuCommandBuilder } from "@discordjs/builders";
 
 import { glob } from "glob";
 
-export async function slashHandler(highClient: HighClient, env: any)
+export async function slashHandler(highClient: HighClient)
 {
-    const rest = new REST({ version: "9" }).setToken(env["TOKEN"]);
+    await highClient.client.initApplicationCommands();
+    return;
+   /* const rest = new REST({ version: "9" }).setToken(env["TOKEN"]);
     const commandObj: {
         [x: string]:
         { exec: (arg0: CommandInteraction<CacheType>, arg1: HighClient) => void; };
     } = {};
 
     const commandArray: Array<string> = [];
-    const slashCommands = await glob(`src/slashCommands/*.ts`);
 
-    slashCommands.forEach((path: string) => {
-        const req = require(`${process.cwd()}/${path}`);
+    const slashCommands = await glob(`src/slashCommands/*.ts`);
+    slashCommands.forEach(async (path: string) => {
+        const req = await import(`../${path}`);
+        console.log(req);
+        console.log(`${path}`);
         commandObj[req.name] = req;
         commandArray.push(req.build.toJSON());
         console.log("Command loaded");
@@ -44,6 +48,6 @@ export async function slashHandler(highClient: HighClient, env: any)
                 console.warn(e);
             }
         }
-    });
+    }); */
 
 };

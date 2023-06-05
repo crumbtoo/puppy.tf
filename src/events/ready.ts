@@ -11,15 +11,14 @@ import chalk from "chalk";
 // };
 
 import type { ArgsOf, Client } from "discordx";
-import { Discord, On } from "discordx";
+import { Discord, Once } from "discordx";
 
 @Discord()
 export class Example {
-    @On()
+    @Once()
     ready(highClient: HighClient, ...args: unknown[]): void
     {
         console.log(`${chalk.yellow("✨ Ready")}, logged in`);
-        // await client.initApplicationCommands();
     }
 }
 

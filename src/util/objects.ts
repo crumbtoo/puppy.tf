@@ -1,4 +1,4 @@
-import { Client, Message, Presence } from "discord.js";
+import { Client } from "discordx";
 import { BaseEventDataResolvable, BaseCommandDataResolvable } from "./types";
 
 // Modifiable version of client that allows for more customization

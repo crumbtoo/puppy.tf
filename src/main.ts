@@ -1,14 +1,14 @@
 import { dirname, importx } from "@discordx/importer";
 import { HighClient } from "./util/objects.js";
-import { Client, MetadataStorage } from "discordx";
+import { Client, MetadataStorage, } from "discordx";
 import { Events, GatewayIntentBits, IntentsBitField } from 'discord.js';
 
-// import "chalk";
+import chalk from "chalk";
 
-// import { eventHandler } from "./handlers/eventHandler.js";
-// import { slashHandler } from "./handlers/slashHandler.js";
+import { eventHandler } from "./handlers/eventHandler.js";
+import { slashHandler } from "./handlers/slashHandler.js";
 
-// require('dotenv/config');
+import 'dotenv/config';
 
 const client = new Client({
     intents:
@@ -16,29 +16,25 @@ const client = new Client({
         , IntentsBitField.Flags.GuildMessageReactions
         , IntentsBitField.Flags.GuildVoiceStates
         ]
-    , botId: "895201505198616576"
-    , botGuilds: true ? ["867598108813033474"] : undefined
-});
+    , botId: "1115023572855951530"
+    , botGuilds: true ? ["1115027642148732968"] : undefined
+    });
 
 const highClient = new HighClient(client);
-
-if(process.env["TOKEN"] === undefined)
-    throw "set client token w/ $TOKEN (including the \"Bot \")";
-else
-{
-    client.once("ready", async () =>
+async function main() {
+    if(process.env["TOKEN"] === undefined)
+        throw "set client token w/ $TOKEN (including the \"Bot \")";
+    else
     {
-        await client.initApplicationCommands();
-    });
+    //  slashHandler(highClient, process.env);
+        highClient.client.login(process.env["TOKEN"]);
 
-    client.on("interactionCreate", (interaction) =>
-    {
-        client.executeInteraction(interaction);
-    });
+        client.on("ready", async function() {
+            console.log(`${chalk.yellow("✨ Ready")}, logged in`);
+            await eventHandler(highClient);
+            await slashHandler(highClient);
+        });
+    }
 
-    await importx(`${dirname(import.meta.url)}/{events,slashCommands}/**/*.{ts,js}`);
-    // slashHandler(highClient, process.env);
-    // eventHandler(highClient);
-    highClient.client.login(process.env["TOKEN"]);
 }
-
+main();

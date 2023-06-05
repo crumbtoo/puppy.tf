@@ -16,7 +16,6 @@
     "extends": ["plugin:@typescript-eslint/eslint-recommended"],
     "rules": {
         "no-eval": ["error", {"allowIndirect": true}],
-        "no-extra-semi": ["error"],
         "semi-spacing": ["error"],
         "comma-spacing": ["error"],
         "no-unreachable": ["error"],

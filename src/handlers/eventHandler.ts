@@ -1,10 +1,13 @@
 import { HighClient, BaseEvent } from "../util/objects.js";
+import { dirname, importx } from "@discordx/importer";
 import { BaseEventDataResolvable } from "../util/types.js";
 import { glob } from "glob";
 
 export async function eventHandler(highClient: HighClient)
 {
-    const events = await glob(`src/events/*.ts`);
+    const data = await importx(`${dirname(import.meta.url)}/../events/**/*.{js,ts}`);
+    return;
+ /*   const events = await glob(`src/events/*.ts`);
     const eventArray: Array<BaseEvent> = [];
     
     events.forEach((path: string) => {
@@ -14,5 +17,6 @@ export async function eventHandler(highClient: HighClient)
         console.log("Event loaded");
     });
     console.log("All events loaded");
+    */
 };
 
