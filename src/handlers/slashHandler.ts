@@ -1,14 +1,15 @@
 import { Routes } from "discord-api-types/v9";
 import { REST } from "@discordjs/rest";
-require('dotenv/config');
-import { HighClient } from "../util/objects";
+// require('dotenv/config');
+import { HighClient } from "../util/objects.js";
 import { CommandInteraction, CacheType, InteractionType } from "discord.js";
 
 import { ContextMenuCommandBuilder } from "@discordjs/builders";
 
 import { glob } from "glob";
 
-module.exports = async (highClient: HighClient, env: any) => {
+export async function slashHandler(highClient: HighClient, env: any)
+{
     const rest = new REST({ version: "9" }).setToken(env["TOKEN"]);
     const commandObj: {
         [x: string]:

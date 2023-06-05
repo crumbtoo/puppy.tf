@@ -1,8 +1,9 @@
-import { HighClient, BaseEvent } from "../util/objects";
-import { BaseEventDataResolvable } from "../util/types";
+import { HighClient, BaseEvent } from "../util/objects.js";
+import { BaseEventDataResolvable } from "../util/types.js";
 import { glob } from "glob";
 
-module.exports = async (highClient: HighClient) => {
+export async function eventHandler(highClient: HighClient)
+{
     const events = await glob(`src/events/*.ts`);
     const eventArray: Array<BaseEvent> = [];
     
@@ -14,3 +15,4 @@ module.exports = async (highClient: HighClient) => {
     });
     console.log("All events loaded");
 };
+
