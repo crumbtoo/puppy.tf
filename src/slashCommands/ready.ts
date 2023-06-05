@@ -4,7 +4,7 @@ import { ApplicationCommandOptionType } from "discord.js";
 import { Discord, Slash, SlashChoice, SlashOption } from "discordx";
 
 @Discord()
- class Example {
+class Example {
     @Slash({ description: "choose1" })
     choose1
     (
