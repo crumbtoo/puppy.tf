@@ -6,7 +6,7 @@ import { glob } from "glob";
 export class EventHandler
 {
     async run() {
-        await importx(`${dirname(import.meta.url)}/events/**/*.{ts,js}`)
+        await importx(`${dirname(import.meta.url)}/../events/**/*.{ts,js}`)
     }
     async reload(name: string) {
         await importx(`${dirname(import.meta.url)}/../events/**/${name}.{js,ts}`);

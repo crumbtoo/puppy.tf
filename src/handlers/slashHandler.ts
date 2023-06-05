@@ -9,10 +9,7 @@ import { dirname, importx } from "@discordx/importer";
 export class SlashHandler
 {
     async run() {
-        console.log(import.meta.url)
-        dirname(import.meta.url)
         await importx(`${dirname(import.meta.url)}/../slashCommands/**/*.{ts,js}`)
-        await this._hClient.client.initApplicationCommands();
     }
     async reload(name: string) {
         await importx(`${dirname(import.meta.url)}/../slashCommands/**/${name}.{ts,js}`);

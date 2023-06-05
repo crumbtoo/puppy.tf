@@ -29,10 +29,14 @@ async function main() {
         throw "set client token w/ $TOKEN (including the \"Bot \")";
     else
     {
-       await importx(`${dirname(import.meta.url)}/{events,slashCommands}/**/*.{ts,js}`);
+        await slashHandler.run();
+        await eventHandler.run();
+
         highClient.client.login(process.env["TOKEN"]);
+
         client.once("ready", async function() {
             console.log(`${chalk.yellow("✨ Ready")}, logged in`);
+            await client.initApplicationCommands();
         });
 
         client.on(Events.InteractionCreate, (interaction) => {
