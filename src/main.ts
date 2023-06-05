@@ -5,8 +5,8 @@ import { Events, GatewayIntentBits, IntentsBitField } from 'discord.js';
 
 import chalk from "chalk";
 
-import { eventHandler } from "./handlers/eventHandler.js";
-import { slashHandler } from "./handlers/slashHandler.js";
+import { EventHandler } from "./handlers/eventHandler.js";
+import { SlashHandler } from "./handlers/slashHandler.js";
 
 import 'dotenv/config';
 
@@ -21,18 +21,22 @@ const client = new Client({
     });
 
 const highClient = new HighClient(client);
+const eventHandler = new EventHandler(highClient);
+const slashHandler = new SlashHandler(highClient);
+
 async function main() {
     if(process.env["TOKEN"] === undefined)
         throw "set client token w/ $TOKEN (including the \"Bot \")";
     else
     {
-    //  slashHandler(highClient, process.env);
+       await importx(`${dirname(import.meta.url)}/{events,slashCommands}/**/*.{ts,js}`);
         highClient.client.login(process.env["TOKEN"]);
-
-        client.on("ready", async function() {
+        client.once("ready", async function() {
             console.log(`${chalk.yellow("✨ Ready")}, logged in`);
-            await eventHandler(highClient);
-            await slashHandler(highClient);
+        });
+
+        client.on(Events.InteractionCreate, (interaction) => {
+            client.executeInteraction(interaction);
         });
     }
 

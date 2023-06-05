@@ -16,7 +16,7 @@ import { Discord, Once } from "discordx";
 @Discord()
 export class Example {
     @Once()
-    ready(highClient: HighClient, ...args: unknown[]): void
+    interactionCreate(highClient: HighClient, ...args: unknown[]): void
     {
         console.log(`${chalk.yellow("✨ Ready")}, logged in`);
     }
