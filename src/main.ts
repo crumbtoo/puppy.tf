@@ -6,14 +6,18 @@ const { Client, Events, GatewayIntentBits } = require('discord.js');
 const chalk = require("chalk")
 require('dotenv/config');
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+import { HighClient } from "./util/objects";
 
-client.once(Events.ClientReady, (c: typeof Client) => {
+const highClient = new HighClient(new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages]}));
+
+
+
+highClient.client.once(Events.ClientReady, (c: typeof Client) => {
 	console.log(`${chalk.yellow("✨ Ready")}, logged in as ${chalk.blue(c.user.username)}`);
 });
 
 if(process.env["TOKEN"] === undefined)
 	throw "set client token w/ $TOKEN (including the \"Bot \")";
 else
-	client.login(process.env["TOKEN"]);
+	highClient.client.login(process.env["TOKEN"]);
 
