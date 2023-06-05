@@ -1,11 +1,11 @@
 import { Client, Message, Presence } from "discord.js";
-import { BaseEventDataResolvable, BaseCommandDataResolvable } from "./types"
+import { BaseEventDataResolvable, BaseCommandDataResolvable } from "./types";
 
 // Modifiable version of client that allows for more customization
 // Passed to all events and commands
 export class HighClient { 
     constructor(discordClient: Client) {
-        this._client = discordClient
+        this._client = discordClient;
     }
 
     private _client: Client;
@@ -29,13 +29,13 @@ export class BaseEvent {
                     exportedRun = require(this._source);
 
                     return Promise.resolve(true);
-                } catch(e) { return Promise.reject(e) }
+                } catch(e) { return Promise.reject(e); }
             }
-        }
+        };
         
         highClient.client.on(this._name, (...args: any[]) => {
             this._exports.run(highClient, ...args);
-        })
+        });
 
     }
 

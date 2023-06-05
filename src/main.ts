@@ -3,14 +3,11 @@
 
 // import { Client } from "discordx"
 const { Client, Events, GatewayIntentBits } = require('discord.js');
-const chalk = require("chalk")
+const chalk = require("chalk");
 require('dotenv/config');
 
 import { HighClient } from "./util/objects";
-
 const highClient = new HighClient(new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages]}));
-
-
 
 highClient.client.once(Events.ClientReady, (c: typeof Client) => {
 	console.log(`${chalk.yellow("✨ Ready")}, logged in as ${chalk.blue(c.user.username)}`);
