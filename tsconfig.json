@@ -1,11 +1,14 @@
 {
-    "compilerOptions": {
+	"compilerOptions": {
         "moduleResolution": "node",
         "module": "CommonJS",
         "target": "ES2020",
         "sourceMap": true,
         "lib": [],
         "outDir": "./dist/",
+
+		/* for discordx */
+		"experimentalDecorators": true,
 
 		/* type checking */
         "strict": true,
