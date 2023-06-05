@@ -16,32 +16,30 @@ export class HighClient {
 
 
 export class BaseEvent {
-    constructor(highClient: HighClient, eventData: BaseEventDataResolvable) {
-        this._name = eventData.name;
-        this._source = eventData.source;
+    constructor(highClient: HighClient, source: string) {
+        this._source = source;
 
-        let exportedRun = require(eventData.source);
+        let eventFileReq = require(source);
         this._exports = {
-           run: exportedRun,
+           run: eventFileReq.exec,
            reload: async () => {
                 try {
                     delete require.cache[this._source];
-                    exportedRun = require(this._source);
+                    eventFileReq = require(this._source);
 
                     return Promise.resolve(true);
                 } catch(e) { return Promise.reject(e); }
             }
         };
         
-        highClient.client.on(this._name, (...args: any[]) => {
+        highClient.client.on(eventFileReq.name, (...args: any[]) => {
             this._exports.run(highClient, ...args);
         });
 
     }
 
-    private readonly _name: string;
     private readonly _source: string;
-    private readonly _exports: {
+    readonly _exports: {
         run: (...args: unknown[]) => void;
         reload: () => void
     };
