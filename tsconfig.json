@@ -1,31 +1,33 @@
-{
-	"compilerOptions": {
-        "moduleResolution": "node",
-        "module": "NodeNext",
-        "target": "ES2022",
-        "sourceMap": true,
-        "lib": [],
-        "outDir": "./dist/",
+{ "compilerOptions":
+    { "moduleResolution": "node"       /* required by discordx */
+    , "module": "ESNext"               /* required by discordx */
+    // , "target": "ESNext"               /* required by discordx */
+    , "target": "ES2020"
+    , "sourceMap": true
+    , "lib": []
+    , "outDir": "./dist/"
 
-		/* for discordx */
-		"experimentalDecorators": true,
+    , "emitDecoratorMetadata": false   /* required by discordx */
+    , "experimentalDecorators": true   /* required by discordx */
+    , "importHelpers": true            /* required by discordx */
+    , "esModuleInterop": true          /* required by discordx */
 
-		/* type checking */
-        "strict": true,
-        "noImplicitAny": true,
-        "noImplicitReturns": true,
-        "noImplicitThis": true,
-        "noPropertyAccessFromIndexSignature": true,
-        "strictFunctionTypes": true,
-        "strictNullChecks": true,
-        "strictPropertyInitialization": true
-    },
-    "exclude": [
-        "node_modules",
-        "dist"
-    ],
-    "ts-node": {
-        "esm": true,
-        "experimentalSpecifierResolution": "node"
-      }
+    /* type checking */
+    , "strict": true
+    , "noImplicitAny": true
+    , "noImplicitReturns": true
+    , "noImplicitThis": true
+    , "noPropertyAccessFromIndexSignature": true
+    , "strictFunctionTypes": true
+    , "strictNullChecks": true
+    , "strictPropertyInitialization": true
+    }
+, "exclude":
+    [ "node_modules"
+    , "dist"
+    ]
+, "ts-node":
+    { "esm": true
+    , "experimentalSpecifierResolution": "node"
+    }
 }
