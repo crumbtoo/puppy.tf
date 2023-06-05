@@ -76,12 +76,55 @@
     "tsyringe" "^4.7.0"
     "typedi" "^0.10.0"
 
+"@discordx/importer@^1.1.10":
+  "integrity" "sha512-JVUDCHzf+dTXqcF2hU++JzCJgVYt6G+StIubaF96SLGTMw8ZcaPUlrYClGAld3JXevzrQVr1yrRYScGObNgEMg=="
+  "resolved" "https://registry.npmjs.org/@discordx/importer/-/importer-1.2.2.tgz"
+  "version" "1.2.2"
+  dependencies:
+    "glob" "^10.0.0"
+    "tslib" "^2.5.0"
+
 "@discordx/internal@^1.0.2":
   "integrity" "sha512-+vv5QS133O3TDDBvPp+ugQy5ExCFjVTxVn5AwQRgwpKNyXSplarNXA4TzACuiYBnXb6ecwtjfbDLcy/xMjYIoQ=="
   "resolved" "https://registry.npmjs.org/@discordx/internal/-/internal-1.0.2.tgz"
   "version" "1.0.2"
   dependencies:
     "tslib" "^2.3.1"
+
+"@discordx/lava-player@^1.0.11", "@discordx/lava-player@>=1":
+  "integrity" "sha512-FKRAvUsvz9owWK84Jc+CYCO/NT5vrP0HqTvBunbbhu/xO9bErBiJ2Fi1VS+GakyJQDGIv/YrXL69hpxhgO8Wmw=="
+  "resolved" "https://registry.npmjs.org/@discordx/lava-player/-/lava-player-1.0.11.tgz"
+  "version" "1.0.11"
+  dependencies:
+    "@types/backoff" "^2.5.2"
+    "backoff" "^2.5.0"
+    "tslib" "^2.4.0"
+
+"@discordx/lava-queue@^1.1.1":
+  "integrity" "sha512-ef5lDT6dPTTL7OyEg7RJsmobaXPWVIdkej1eNY+o05nHl8xM+Lyl0uhyvAIkp3zYcfBFQ81T3H0tZKMj3ehZ/w=="
+  "resolved" "https://registry.npmjs.org/@discordx/lava-queue/-/lava-queue-1.1.1.tgz"
+  "version" "1.1.1"
+  dependencies:
+    "lodash" "^4.17.21"
+    "tslib" "^2.4.0"
+
+"@discordx/pagination@^3.4.0":
+  "integrity" "sha512-5LQ+O7NpE/cL1qE8cKf0sKGxAtqj/GTtbbMMwwbNLKDSKID6j+ltabsMYm4i5OpzXaWt98DZXEVwq05WoUSXJw=="
+  "resolved" "https://registry.npmjs.org/@discordx/pagination/-/pagination-3.4.1.tgz"
+  "version" "3.4.1"
+  dependencies:
+    "lodash" "^4.17.21"
+    "tslib" "^2.5.0"
+
+"@discordx/plugin-lava-player@^1.0.2":
+  "integrity" "sha512-sgDr+kh+gSIXu1lCNBJvSN0hX0/3qMuZkW/vIacNxc9qfNr+zQZh79NILjPFZ+zaL4MdBFWZ7phjnEQ15jk+VQ=="
+  "resolved" "https://registry.npmjs.org/@discordx/plugin-lava-player/-/plugin-lava-player-1.0.2.tgz"
+  "version" "1.0.2"
+  dependencies:
+    "@discordx/importer" "^1.1.10"
+    "@discordx/lava-player" "^1.0.11"
+    "@discordx/lava-queue" "^1.1.1"
+    "@discordx/pagination" "^3.4.0"
 
 "@eslint-community/eslint-utils@^4.2.0":
   "integrity" "sha512-1/sA4dwrzBAyeUoQ6oxahHKmrZvsnLCg4RfxW3ZFGGmQkSNQPFNLV9CUEFQP1x9EYXHTo5p6xdhZM1Ne9p/AfA=="
@@ -232,6 +275,13 @@
   "integrity" "sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA=="
   "resolved" "https://registry.npmjs.org/@tsconfig/node16/-/node16-1.0.4.tgz"
   "version" "1.0.4"
+
+"@types/backoff@^2.5.2":
+  "integrity" "sha512-oa1YvggujhVppgeIct3LBkbCVXKh97fvOFIR6VlFLxRCeswk/KBRQKg7zoX832vlCP5bGLOFqC9hY7vsDeL9AA=="
+  "resolved" "https://registry.npmjs.org/@types/backoff/-/backoff-2.5.2.tgz"
+  "version" "2.5.2"
+  dependencies:
+    "@types/node" "*"
 
 "@types/glob@^8.0.0":
   "integrity" "sha512-IO+MJPVhoqz+28h1qLAcBEH2+xHMK6MTyHJc7MTnnYb6wsoLR29POVGJ7LycmVXIqyy/4/2ShP5sUwTXuOwb/w=="
@@ -468,6 +518,13 @@
   "resolved" "https://registry.npmjs.org/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz"
   "version" "1.0.5"
 
+"backoff@^2.5.0":
+  "integrity" "sha512-wC5ihrnUXmR2douXmXLCe5O3zg3GKIyvRi/hi58a/XyRxVI+3/yM0PYueQOZXPXQ9pxBislYkw+sF9b7C/RuMA=="
+  "resolved" "https://registry.npmjs.org/backoff/-/backoff-2.5.0.tgz"
+  "version" "2.5.0"
+  dependencies:
+    "precond" "0.2"
+
 "balanced-match@^1.0.0":
   "integrity" "sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw=="
   "resolved" "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz"
@@ -605,7 +662,7 @@
   "resolved" "https://registry.npmjs.org/discord-api-types/-/discord-api-types-0.37.43.tgz"
   "version" "0.37.43"
 
-"discord.js@^14.11.0", "discord.js@>=14 || ^14.0.0-dev":
+"discord.js@^14.11.0", "discord.js@>=13", "discord.js@>=14 || ^14.0.0-dev":
   "integrity" "sha512-CkueWYFQ28U38YPR8HgsBR/QT35oPpMbEsTNM30Fs8loBIhnA4s70AwQEoy6JvLcpWWJO7GY0y2BUzZmuBMepQ=="
   "resolved" "https://registry.npmjs.org/discord.js/-/discord.js-14.11.0.tgz"
   "version" "14.11.0"
@@ -1100,7 +1157,7 @@
   dependencies:
     "@types/glob" "^8.0.0"
 
-"glob@^10.2.6", "glob@^8.0.3":
+"glob@^10.0.0", "glob@^10.2.6", "glob@^8.0.3":
   "integrity" "sha512-U/rnDpXJGF414QQQZv5uVsabTVxMSwzS5CH0p3DRCIV6ownl4f7PzGnkGmvlum2wB+9RlJWJZ6ACU1INnBqiPA=="
   "resolved" "https://registry.npmjs.org/glob/-/glob-10.2.6.tgz"
   "version" "10.2.6"
@@ -1630,6 +1687,11 @@
   "resolved" "https://registry.npmjs.org/picomatch/-/picomatch-2.3.1.tgz"
   "version" "2.3.1"
 
+"precond@0.2":
+  "integrity" "sha512-QCYG84SgGyGzqJ/vlMsxeXd/pgL/I94ixdNFyh1PusWmTCyVfPJjZ1K1jvHtsbfnXQs2TSkEP2fR7QiMZAnKFQ=="
+  "resolved" "https://registry.npmjs.org/precond/-/precond-0.2.3.tgz"
+  "version" "0.2.3"
+
 "prelude-ls@^1.2.1":
   "integrity" "sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g=="
   "resolved" "https://registry.npmjs.org/prelude-ls/-/prelude-ls-1.2.1.tgz"
@@ -1946,7 +2008,7 @@
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
   "version" "1.14.1"
 
-"tslib@^2.3.1", "tslib@^2.5.0":
+"tslib@^2.3.1", "tslib@^2.4.0", "tslib@^2.5.0":
   "integrity" "sha512-mSxlJJwl3BMEQCUNnxXBU9jP4JBktcEGhURcPR6VQVlnP0FdDEsIaz0C35dXNGLyRfrATNofF0F5p2KPxQgB+w=="
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-2.5.3.tgz"
   "version" "2.5.3"

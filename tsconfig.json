@@ -1,11 +1,14 @@
 {
-    "compilerOptions": {
+	"compilerOptions": {
         "moduleResolution": "node",
-        "module": "CommonJS",
-        "target": "ES6",
+        "module": "NodeNext",
+        "target": "ES2022",
         "sourceMap": true,
         "lib": [],
         "outDir": "./dist/",
+
+		/* for discordx */
+		"experimentalDecorators": true,
 
 		/* type checking */
         "strict": true,
@@ -21,4 +24,8 @@
         "node_modules",
         "dist"
     ],
+    "ts-node": {
+        "esm": true,
+        "experimentalSpecifierResolution": "node"
+      }
 }

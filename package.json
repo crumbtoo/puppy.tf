@@ -6,6 +6,7 @@
 		"lint": "eslint --ext .ts --ignore-path .gitignore ."
 	},
 	"dependencies": {
+		"@discordx/plugin-lava-player": "^1.0.2",
 		"chalk": "4.1.2",
 		"discord.js": "^14.11.0",
 		"discordx": "^11.7.6",

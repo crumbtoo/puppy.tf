@@ -1,13 +1,22 @@
-// declare var require: any;
-// declare var process: any;
+import { HighClient } from "./util/objects";
+import { Client, MetadataStorage } from "discordx";
+import { Events, GatewayIntentBits, IntentsBitField } from 'discord.js';
 
-// import { Client } from "discordx"
-const { Client, Events, GatewayIntentBits } = require('discord.js');
 const chalk = require("chalk");
+
 require('dotenv/config');
 
-import { HighClient } from "./util/objects";
-const highClient = new HighClient(new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages]}));
+
+
+const client = new Client({
+	intents: [
+		IntentsBitField.Flags.Guilds,
+		IntentsBitField.Flags.GuildMessageReactions,
+		IntentsBitField.Flags.GuildVoiceStates,
+	],
+//	plugins: [ lavaPlayerPlugin ],
+});
+const highClient = new HighClient(client);
 
 if(process.env["TOKEN"] === undefined)
 	throw "set client token w/ $TOKEN (including the \"Bot \")";
