@@ -22,3 +22,4 @@ import { Discord, Slash, SlashChoice, SlashOption } from "discordx";
         interaction.reply(what);
     }
 }
+
