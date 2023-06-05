@@ -3,7 +3,7 @@ import { dirname, importx } from "@discordx/importer";
 import { BaseEventDataResolvable } from "../util/types.js";
 import { glob } from "glob";
 
-export class EventHandler
+export class AuthHandler
 {
     async run() {
         await importx(`${dirname(import.meta.url)}/../events/**/*.{ts,js}`);

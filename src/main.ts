@@ -1,14 +1,15 @@
 import { dirname, importx } from "@discordx/importer";
 import { HighClient } from "./util/objects.js";
 import { Client, MetadataStorage, } from "discordx";
-import { Events, GatewayIntentBits, IntentsBitField } from 'discord.js';
+import { Events, GatewayIntentBits, IntentsBitField } from "discord.js";
 
 import chalk from "chalk";
 
 import { EventHandler } from "./handlers/eventHandler.js";
 import { SlashHandler } from "./handlers/slashHandler.js";
+import { ServerHandler } from "./handlers/serverHandler.js";
 
-import 'dotenv/config';
+import "dotenv/config";
 
 const client = new Client({
     intents:
@@ -21,8 +22,10 @@ const client = new Client({
     });
 
 const highClient = new HighClient(client);
-const eventHandler = new EventHandler(highClient);
-const slashHandler = new SlashHandler(highClient);
+
+const eventHandler = new EventHandler(highClient); // for bot events
+const slashHandler = new SlashHandler(highClient); // for bot slash commands
+const serverHandler = new ServerHandler(); // for express server
 
 async function main() {
     if(process.env["TOKEN"] === undefined)
@@ -31,11 +34,12 @@ async function main() {
     {
         await slashHandler.run();
         await eventHandler.run();
+        await serverHandler.run();
 
         highClient.client.login(process.env["TOKEN"]);
 
         client.once("ready", async function() {
-            console.log(`${chalk.yellow("✨ Ready")}, logged in`);
+            console.log(`${chalk.yellow("✨ Ready")}, logged in to bot`);
             await client.initApplicationCommands();
         });
 
