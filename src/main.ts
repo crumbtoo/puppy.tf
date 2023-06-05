@@ -13,6 +13,6 @@ if(process.env["TOKEN"] === undefined)
 	throw "set client token w/ $TOKEN (including the \"Bot \")";
 else
 	highClient.client.login(process.env["TOKEN"]);
-	require("./handlers/slashHandler")(highClient, process.env["TOKEN"]);
+	require("./handlers/slashHandler")(highClient, process.env);
 	require("./handlers/eventHandler")(highClient);
 

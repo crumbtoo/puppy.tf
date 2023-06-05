@@ -1,6 +1,6 @@
 import { Routes } from "discord-api-types/v9";
 import { REST } from "@discordjs/rest";
-import 'dotenv/config';
+require('dotenv/config');
 import { HighClient } from "../util/objects";
 import { CommandInteraction, CacheType, InteractionType } from "discord.js";
 
@@ -8,8 +8,8 @@ import { ContextMenuCommandBuilder } from "@discordjs/builders";
 
 import { glob } from "glob";
 
-module.exports = async (highClient: HighClient, token: string) => {
-    const rest = new REST({ version: "9" }).setToken(token);
+module.exports = async (highClient: HighClient, env: any) => {
+    const rest = new REST({ version: "9" }).setToken(env["TOKEN"]);
     const commandObj: {
         [x: string]:
         { exec: (arg0: CommandInteraction<CacheType>, arg1: HighClient) => void; };
@@ -26,7 +26,7 @@ module.exports = async (highClient: HighClient, token: string) => {
     });
 
     try {
-        await rest.put(Routes.applicationGuildCommands("1115023572855951530", "1115027642148732968"), {
+        await rest.put(Routes.applicationGuildCommands(env["CLIENTID"], env["SERVERID"]), {
           body: commandArray,
         });
         console.log("Commands loaded");
