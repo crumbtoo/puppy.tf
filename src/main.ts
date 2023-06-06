@@ -8,30 +8,34 @@ import chalk from "chalk";
 import { EventHandler } from "./handlers/eventHandler.js";
 import { SlashHandler } from "./handlers/slashHandler.js";
 import { ServerHandler } from "./handlers/serverHandler.js";
+import { DatabaseHandler } from "./handlers/databaseHandler.js";
+
 
 import "dotenv/config";
 
 const client = new Client({
-    intents:
-        [ IntentsBitField.Flags.Guilds
-        , IntentsBitField.Flags.GuildMessageReactions
-        , IntentsBitField.Flags.GuildVoiceStates
-        ]
-    , botId: "1115023572855951530"
-    , botGuilds: true ? ["1115027642148732968"] : undefined
-    });
+    intents: [ 
+        IntentsBitField.Flags.Guilds, 
+        IntentsBitField.Flags.GuildMessageReactions, 
+        IntentsBitField.Flags.GuildVoiceStates 
+    ],
+    botId: "1115023572855951530",
+    botGuilds: true ? ["1115027642148732968"] : undefined
+});
 
 const highClient = new HighClient(client);
 
 const eventHandler = new EventHandler(highClient); // for bot events
 const slashHandler = new SlashHandler(highClient); // for bot slash commands
-const serverHandler = new ServerHandler(); // for express server
+const databaseHandler = new DatabaseHandler(); // for prisma
+const serverHandler = new ServerHandler(databaseHandler.pClient); // for express server
 
 async function main() {
     if(process.env["TOKEN"] === undefined)
         throw "set client token w/ $TOKEN (including the \"Bot \")";
     else
     {
+        const prismaClient = databaseHandler.pClient;
         await slashHandler.run();
         await eventHandler.run();
         await serverHandler.run();

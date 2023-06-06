@@ -6,3 +6,5 @@ package-lock.json
 dist/
 yarn-error.log
 .prettierrc
+swagger.js
+swagger-output.json

@@ -1,16 +1,20 @@
-import { HighClient, BaseEvent } from "../util/objects.js";
-import { dirname, importx } from "@discordx/importer";
-import { BaseEventDataResolvable } from "../util/types.js";
 import { glob } from "glob";
-
+import { PrismaClient } from "@prisma/client";
 import * as http from "http";
-import express, { Express } from "express";
+import express, { Express, NextFunction } from "express";
 import bodyParser from "body-parser";
+import expressSession from "express-session";
+import { PrismaSessionStore } from "@quixo3/prisma-session-store";
+import rateLimit from "express-rate-limit";
+import { uid } from "uid/secure";
+
 import {
     Response, Params, Controller, Get,
-    attachControllers, Middleware
-  } from "@decorators/express";
-  
+    attachControllers, ERROR_MIDDLEWARE 
+  } from "@decorators/express"; 
+
+import { Container } from "@decorators/di";
+import { ServerErrorMiddleware } from "../util/objects";
 
 export class ServerHandler
 {
@@ -20,13 +24,46 @@ export class ServerHandler
     get app(): Express {
         return this._app;
     }
-    constructor() {
+    constructor(prisma: PrismaClient) {
         this._app = express();
 
         this._app.set("port", process.env["PORT"] || 3000);
 
         this._app.use(bodyParser.json());
         this._app.use(bodyParser.urlencoded({ extended: true }));
+        this._app.use(rateLimit({
+            windowMs: 120, // 2 minutes
+            max: 30, // 30 requests every windowMs
+            standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+            legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+        }));
+
+        this._app.set("prisma", prisma);
+
+        this.app.use(
+            expressSession({
+                cookie: {
+                maxAge: 2 * 24 * 60 * 60 * 1000, // 2 days
+                sameSite: true
+                },
+                secret: uid(32),
+                resave: true,
+                saveUninitialized: true,
+                store: new PrismaSessionStore(
+                    new PrismaClient(),
+                    {
+                        checkPeriod: 2 * 60 * 1000,  //ms
+                        dbRecordIdIsSessionId: true,
+                        dbRecordIdFunction: undefined,
+                    }
+              )
+            })
+          );
+
+          Container.provide([
+            { provide: ERROR_MIDDLEWARE, useClass: ServerErrorMiddleware }
+          ]);
+        
 
         // CORS
         this.app.use(function (req, res, next) {
