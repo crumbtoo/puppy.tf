@@ -10,17 +10,16 @@ import { SlashHandler } from "./handlers/slashHandler.js";
 import { ServerHandler } from "./handlers/serverHandler.js";
 import { DatabaseHandler } from "./handlers/databaseHandler.js";
 
-
 import "dotenv/config";
 
 const client = new Client({
-    intents: [ 
-        IntentsBitField.Flags.Guilds, 
-        IntentsBitField.Flags.GuildMessageReactions, 
-        IntentsBitField.Flags.GuildVoiceStates 
-    ],
-    botId: "1115023572855951530",
-    botGuilds: true ? ["1115027642148732968"] : undefined
+    intents:
+        [ IntentsBitField.Flags.Guilds
+        , IntentsBitField.Flags.GuildMessageReactions
+        , IntentsBitField.Flags.GuildVoiceStates
+        ]
+    , botId: process.env["BOTID"] ?? undefined
+    , botGuilds: process.env["GUILD"] ? [ process.env["GUILD"] ] : undefined
 });
 
 const highClient = new HighClient(client);
