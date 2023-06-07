@@ -3,10 +3,16 @@ import { BaseEventDataResolvable, BaseCommandDataResolvable } from "./types";
 import { attachMiddleware, ErrorMiddleware } from "@decorators/express";
 import {Request, Response, NextFunction} from "express";
 import fetch from "node-fetch";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
 
 import session from "express-session";
 
 import "dotenv/config";
+
+/* maybe doesn't belong here. whatever. */
+export const __filename = fileURLToPath(import.meta.url);
+export const __dirname = dirname(__filename);
 
 export const redirectURL: string =
     (function ()

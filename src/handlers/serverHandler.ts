@@ -7,6 +7,8 @@ import expressSession from "express-session";
 import { PrismaSessionStore } from "@quixo3/prisma-session-store";
 import rateLimit from "express-rate-limit";
 import { uid } from "uid/secure";
+import { fileURLToPath } from "url";
+import { join } from "path";
 
 import {
     Response, Params, Controller, Get,
@@ -14,7 +16,7 @@ import {
   } from "@decorators/express"; 
 
 import { Container } from "@decorators/di";
-import { ServerErrorMiddleware } from "../util/objects";
+import { ServerErrorMiddleware, __dirname } from "../util/objects.js";
 
 export class ServerHandler
 {
@@ -76,11 +78,11 @@ export class ServerHandler
     }
 
     async run() {
-        const controllers = await glob(`src/controllers/*.ts`);
+        const controllers = await glob(join(__dirname, "../controllers/*.{js,ts}"));
         const controllerArray: Array<any> = [];
 
         for (const path of controllers) {
-           const result = await import(`../../${path}`);
+           const result = await import(path);
            controllerArray.push(result.NewController);
         };
 
@@ -89,5 +91,5 @@ export class ServerHandler
             console.log("🚀 Server is running on port " + this._app.get("port"));
         });
     }
-
 }
+
