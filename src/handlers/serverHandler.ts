@@ -14,7 +14,7 @@ import {
   } from "@decorators/express"; 
 
 import { Container } from "@decorators/di";
-import { ServerErrorMiddleware } from "../util/objects";
+import { ServerErrorMiddleware } from "../util/objects.js";
 
 export class ServerHandler
 {
