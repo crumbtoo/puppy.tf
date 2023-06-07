@@ -11,7 +11,7 @@ import "dotenv/config";
 export const redirectURL: string =
     (function ()
     {
-        let x = process.env["REDIRECT_URL"];
+        const x = process.env["REDIRECT_URL"];
         if(x === undefined)
             throw "define $REDIRECT_URL bitch";
         else
