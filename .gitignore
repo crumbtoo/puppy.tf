@@ -8,5 +8,10 @@ yarn-error.log
 .prettierrc
 swagger.js
 swagger-output.json
+<<<<<<< HEAD
 prisma/dev.db
 prisma/migrations
+=======
+prisma/
+
+>>>>>>> 5870af34847d388857ba1d31cb7812065cbad0be

@@ -6,7 +6,17 @@ import fetch from "node-fetch";
 
 import session from "express-session";
 
-export const redirectURL = "https://discord.com/api/oauth2/authorize?client_id=1115023572855951530&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fsuccess&response_type=code&scope=guilds%20identify";
+import "dotenv/config";
+
+export const redirectURL: string =
+    (function ()
+    {
+        let x = process.env["REDIRECT_URL"];
+        if(x === undefined)
+            throw "define $REDIRECT_URL bitch";
+        else
+            return x;
+    })();
 
 declare module "express-session" {
   export interface SessionData {
