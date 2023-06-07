@@ -8,3 +8,5 @@ yarn-error.log
 .prettierrc
 swagger.js
 swagger-output.json
+prisma/dev.db
+prisma/migrations

@@ -18,7 +18,7 @@ declare module "express-session" {
 
 // Check for authorization
 export function Authorization(fetch: Function) {
-    return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    return function (target: any, propertyKey: string) {
         attachMiddleware(target, propertyKey, (req: Request, res: Response, next: NextFunction) => {
             const session = req.session;
             fetch("https://discord.com/api/users/@me", {
@@ -29,7 +29,7 @@ export function Authorization(fetch: Function) {
             .then(() => next())
             .catch((e: Error) => {
                 console.log(e);
-                res.redirect(redirectURL);
+                res.redirect(redirectURL); // presumably unauthorized lol
             });
         });
     };
