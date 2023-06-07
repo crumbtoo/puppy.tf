@@ -18,7 +18,7 @@ const client = new Client({
         , IntentsBitField.Flags.GuildMessageReactions
         , IntentsBitField.Flags.GuildVoiceStates
         ]
-    , botId: process.env["BOTID"] ?? undefined
+    , botId: process.env["CLIENTID"] ?? undefined
     , botGuilds: process.env["GUILD"] ? [ process.env["GUILD"] ] : undefined
 });
 

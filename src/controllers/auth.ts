@@ -18,49 +18,7 @@ export class NewController {
   }
 
   @Get("/")
-      // #swagger.tags = ['Misc']
-    // #swagger.summary = 'Checks if a user is a member of the Devforum'
-    // #swagger.description = 'This accepts the name of the user (name parameter) and checks to see if the user is a member of the Devforum. If the user does not have a Devforum account, this will return an error code 0. A member is a user who has the ability to post on the Devforum. This is achieved by around 3 hours of reading time.'
-    // #swagger.produces = ['application/json']
-    /* #swagger.parameters['name'] = {
-        in: 'path',
-        description: 'Name of the user',
-        required: true
-    } 
-    */
-    /*
-    #swagger.responses[200] = {
-      description: 'Indicates a succesful response',
-      schema: {
-        error: false,
-        data: {
-          member: true,
-        },
-      },
-    };
-    */
   authAttempt(@Response() res: any, @Params("id") id: string) {
-    // #swagger.tags = ['Misc']
-    // #swagger.summary = 'Checks if a user is a member of the Devforum'
-    // #swagger.description = 'This accepts the name of the user (name parameter) and checks to see if the user is a member of the Devforum. If the user does not have a Devforum account, this will return an error code 0. A member is a user who has the ability to post on the Devforum. This is achieved by around 3 hours of reading time.'
-    // #swagger.produces = ['application/json']
-    /* #swagger.parameters['name'] = {
-        in: 'path',
-        description: 'Name of the user',
-        required: true
-    } 
-    */
-    /*
-    #swagger.responses[200] = {
-      description: 'Indicates a succesful response',
-      schema: {
-        error: false,
-        data: {
-          member: true,
-        },
-      },
-    };
-    */
     res.redirect(redirectURL);
   }
 
