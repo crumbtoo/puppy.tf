@@ -5,12 +5,19 @@ import {Request, Response, NextFunction} from "express";
 import { PrismaClient } from "@prisma/client";
 import { singleton } from "tsyringe";
 import fetch from "node-fetch";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
 
 import session from "express-session";
 
 import "dotenv/config";
 
-export const redirectURL: string = (function ()
+/* maybe doesn't belong here. whatever. */
+export const __filename = fileURLToPath(import.meta.url);
+export const __dirname = dirname(__filename);
+
+export const redirectURL: string =
+    (function ()
     {
         const x = process.env["REDIRECT_URL"];
         if(x === undefined)
