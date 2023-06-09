@@ -11,8 +11,10 @@ datasource db {
 }
 
 model User {
-  id      Int     @id
-  session String  @unique
+  id       String  @id
+  tf2Name  String?
+  csgoName String?
+  r6sName  String?
 }
 
 model Session {

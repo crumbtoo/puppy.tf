@@ -1,7 +1,11 @@
+import "reflect-metadata";
+
 import { dirname, importx } from "@discordx/importer";
 import { HighClient } from "./util/objects.js";
-import { Client, MetadataStorage, } from "discordx";
+import { Client, MetadataStorage, DIService, tsyringeDependencyRegistryEngine } from "discordx";
 import { Events, GatewayIntentBits, IntentsBitField } from "discord.js";
+
+import { container, instanceCachingFactory  } from "tsyringe";
 
 import chalk from "chalk";
 
@@ -9,6 +13,13 @@ import { EventHandler } from "./handlers/eventHandler.js";
 import { SlashHandler } from "./handlers/slashHandler.js";
 import { ServerHandler } from "./handlers/serverHandler.js";
 import { DatabaseHandler } from "./handlers/databaseHandler.js";
+
+tsyringeDependencyRegistryEngine.setToken(Symbol());
+DIService.engine = tsyringeDependencyRegistryEngine
+  .setUseTokenization(true)
+  .setCashingSingletonFactory(instanceCachingFactory)
+  .setInjector(container);
+
 
 import "dotenv/config";
 
@@ -34,7 +45,10 @@ async function main() {
         throw "set client token w/ $TOKEN (including the \"Bot \")";
     else
     {
+          // inject prisma client into the fucking thingamajig
+
         const prismaClient = databaseHandler.pClient;
+
         await slashHandler.run();
         await eventHandler.run();
         await serverHandler.run();

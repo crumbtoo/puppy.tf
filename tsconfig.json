@@ -8,7 +8,7 @@
     , "lib": []
     , "outDir": "./dist/"
 
-    , "emitDecoratorMetadata": false   /* required by discordx */
+    , "emitDecoratorMetadata": true    /* required by discordx */
     , "experimentalDecorators": true   /* required by discordx */
     , "importHelpers": true            /* required by discordx */
     , "esModuleInterop": true          /* required by discordx */

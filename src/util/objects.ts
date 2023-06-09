@@ -2,18 +2,19 @@ import { Client } from "discordx";
 import { BaseEventDataResolvable, BaseCommandDataResolvable } from "./types";
 import { attachMiddleware, ErrorMiddleware } from "@decorators/express";
 import {Request, Response, NextFunction} from "express";
+import { PrismaClient } from "@prisma/client";
+import { singleton } from "tsyringe";
 import fetch from "node-fetch";
 
 import session from "express-session";
 
 import "dotenv/config";
 
-export const redirectURL: string =
-    (function ()
+export const redirectURL: string = (function ()
     {
         const x = process.env["REDIRECT_URL"];
         if(x === undefined)
-            throw "define $REDIRECT_URL bitch";
+            throw "define $REDIRECT_URL";
         else
             return x;
     })();
@@ -39,7 +40,7 @@ export function Authorization(fetch: Function) {
             .then(() => next())
             .catch((e: Error) => {
                 console.log(e);
-                res.redirect(redirectURL); // presumably unauthorized lol
+                res.redirect(redirectURL); // presumably unauthorized
             });
         });
     };
@@ -100,3 +101,6 @@ export class BaseEvent {
 export class BaseCommand {
 
 }
+
+@singleton()
+export class InjectPrismaClient extends PrismaClient {}

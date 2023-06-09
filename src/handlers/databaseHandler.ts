@@ -1,4 +1,7 @@
 import { PrismaClient } from "@prisma/client";
+import { singleton } from "tsyringe";
+
+@singleton()
 export class DatabaseHandler
 {
     get pClient(): PrismaClient {
@@ -12,4 +15,5 @@ export class DatabaseHandler
 
         this._pClient = prisma;
     }
+
 }
