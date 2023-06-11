@@ -14,13 +14,14 @@ import { SlashHandler } from "./handlers/slashHandler.js";
 import { ServerHandler } from "./handlers/serverHandler.js";
 import { DatabaseHandler } from "./handlers/databaseHandler.js";
 import { MusicHandler } from "./handlers/musicHandler.js";
+// // @ts-ignore
+// import { purescriptTest } from "../dist/Test";
 
 tsyringeDependencyRegistryEngine.setToken(Symbol());
 DIService.engine = tsyringeDependencyRegistryEngine
   .setUseTokenization(true)
   .setCashingSingletonFactory(instanceCachingFactory)
   .setInjector(container);
-
 
 import "dotenv/config";
 
@@ -47,7 +48,7 @@ async function main() {
         throw "set client token w/ $TOKEN (including the \"Bot \")";
     else
     {
-          // inject prisma client into the fucking thingamajig
+        // inject prisma client into the fucking thingamajig
 
         const prismaClient = databaseHandler.pClient;
 

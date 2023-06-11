@@ -8,7 +8,8 @@
         "dev": "ts-node-esm src/main.ts",
         "build": "tsc",
         "start": "node dist/main.js",
-        "swagger-autogen": "node ./swagger.ts"
+        "swagger-autogen": "node ./swagger.ts",
+        "purs": "spago bundle-module --main Test --to dist/PursTest/index.js"
     },
     "dependencies": {
         "@decorators/di": "^2.0.0",
@@ -25,6 +26,7 @@
         "discord.js": "^14.11.0",
         "discordx": "^11.7.6",
         "dotenv": "^16.1.4",
+        "esbuild": "0.18.0",
         "express": "^4.18.2",
         "express-rate-limit": "^6.7.0",
         "glob": "^10.2.6",
