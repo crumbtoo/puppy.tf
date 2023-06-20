@@ -1,6 +1,6 @@
 import { HighClient } from "../util/objects.js";
 import { GatewayDispatchEvents } from "discord.js";
-import * as Lava from "@discordx/lava-player"
+import * as Lava from "@discordx/lava-player";
 import { Client, MetadataStorage } from "discordx";
 import { Events, GatewayIntentBits, IntentsBitField } from "discord.js";
 
@@ -18,10 +18,10 @@ export class MusicHandler
 
         this.node = new Lava.Node(
             { host:
-                { address: process.env['LAVA_HOST'] ?? ""
-                , port: Number(process.env['LAVA_PORT']) ?? 2333
+                { address: process.env["LAVA_HOST"] ?? ""
+                , port: Number(process.env["LAVA_PORT"]) ?? 2333
                 }
-            , password: process.env['LAVA_PASSWORD'] ?? ""
+            , password: process.env["LAVA_PASSWORD"] ?? ""
 
             , send(guildId, packet)
                 {

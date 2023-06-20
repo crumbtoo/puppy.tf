@@ -12,13 +12,13 @@ import { InjectPrismaClient } from "../util/objects";
 export class Link {
   constructor(private readonly prismaClient: InjectPrismaClient) {}
 
-  @Slash({ description: "Link a game account to puppy. ", name: "link" })
+  @Slash({ description: "Get the stats for a game", name: "stats" })
   async link(  
     @SlashChoice({ name: "Team Fortress 2", value: "tf2" })
     @SlashChoice({ name: "Counter-Strike: Global Offensive", value: "csgo" })
     @SlashChoice({ name: "Rainbow Six Siege", value: "r6s" })
     @SlashOption({
-      description: "The game to link puppy to.",
+      description: "The game to get stats for",
       name: "game",
       required: true,
       type: ApplicationCommandOptionType.String,
@@ -26,9 +26,9 @@ export class Link {
     game: string,
 
     @SlashOption({
-      description: "Name of your account",
+      description: "Name of your account. Optional if you have your account linked",
       name: "name",
-      required: true,
+      required: false,
       type: ApplicationCommandOptionType.String,
     })  
     name: string,
