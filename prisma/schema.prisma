@@ -12,9 +12,9 @@ datasource db {
 
 model User {
   id       String  @id
-  tf2Name  String?
-  csgoName String?
-  r6sName  String?
+  tf2      String?
+  csgo     String?
+  r6s      String?
 }
 
 model Session {

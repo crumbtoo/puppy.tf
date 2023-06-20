@@ -9,6 +9,7 @@ import { container, instanceCachingFactory  } from "tsyringe";
 
 import chalk from "chalk";
 
+import { ErrorEmbed } from "./util/commands/embeds.js";
 import { EventHandler } from "./handlers/eventHandler.js";
 import { SlashHandler } from "./handlers/slashHandler.js";
 import { ServerHandler } from "./handlers/serverHandler.js";
@@ -41,7 +42,7 @@ const eventHandler = new EventHandler(highClient); // for bot events
 const slashHandler = new SlashHandler(highClient); // for bot slash commands
 const databaseHandler = new DatabaseHandler(); // for prisma
 const serverHandler = new ServerHandler(databaseHandler.pClient); // for express server
-const musicHandler = new MusicHandler(highClient); // i dont use comments
+// const musicHandler = new MusicHandler(highClient); // i dont use comments
 
 async function main() {
     if(process.env["TOKEN"] === undefined)
@@ -55,7 +56,7 @@ async function main() {
         await slashHandler.run();
         await eventHandler.run();
         await serverHandler.run();
-        await musicHandler.run();
+    //    await musicHandler.run();
 
         highClient.client.login(process.env["TOKEN"]);
 
@@ -65,7 +66,11 @@ async function main() {
         });
 
         client.on(Events.InteractionCreate, (interaction) => {
-            client.executeInteraction(interaction);
+            try {
+                client.executeInteraction(interaction);
+            } catch(e) {
+                console.warn(e);
+            }
         });
     }
 

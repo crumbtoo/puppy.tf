@@ -6,6 +6,7 @@ import { Discord, Slash, SlashChoice, SlashOption, DIService } from "discordx";
 import { PrismaClient } from "@prisma/client";
 import { DatabaseHandler } from "../handlers/databaseHandler";
 import { InjectPrismaClient } from "../util/objects";
+// import { GameStats } from "../util/commands/gameStats"; 
 
 @Discord()
 @injectable() // for di injection
@@ -26,7 +27,7 @@ export class Link {
     game: string,
 
     @SlashOption({
-      description: "Name of your account",
+      description: "Name of your account. For Team Fortess 2 and Counter-Strike, this should be your Steam account's vanity URL identifier or your Steam ID. As an example, if your URL was `https://steamcommunity.com/id/example/`, you would use `example`.",
       name: "name",
       required: true,
       type: ApplicationCommandOptionType.String,
@@ -40,13 +41,13 @@ export class Link {
         id: interaction.user.id,
       },
       update: {
-        [game + "Name"]: name
+        [game]: name
       },
       create: {
         id: interaction.user.id,
-        [game + "Name"]: name
+        [game]: name
       },
     });
-    await interaction.reply(`${game}`);
+    await interaction.reply("Successfully linked!");
   }
 }
