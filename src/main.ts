@@ -15,6 +15,8 @@ import { SlashHandler } from "./handlers/slashHandler.js";
 import { ServerHandler } from "./handlers/serverHandler.js";
 import { DatabaseHandler } from "./handlers/databaseHandler.js";
 import { MusicHandler } from "./handlers/musicHandler.js";
+import { SteamHandler } from "./handlers/steamHandler.js";
+
 // // @ts-ignore
 // import { purescriptTest } from "../dist/Test";
 
@@ -42,6 +44,7 @@ const eventHandler = new EventHandler(highClient); // for bot events
 const slashHandler = new SlashHandler(highClient); // for bot slash commands
 const databaseHandler = new DatabaseHandler(); // for prisma
 const serverHandler = new ServerHandler(databaseHandler.pClient); // for express server
+const steamHandler = new SteamHandler();
 // const musicHandler = new MusicHandler(highClient); // i dont use comments
 
 async function main() {
@@ -56,6 +59,7 @@ async function main() {
         await slashHandler.run();
         await eventHandler.run();
         await serverHandler.run();
+        await steamHandler.run();
     //    await musicHandler.run();
 
         highClient.client.login(process.env["TOKEN"]);
@@ -72,6 +76,7 @@ async function main() {
                 console.warn(e);
             }
         });
+
     }
 
 }

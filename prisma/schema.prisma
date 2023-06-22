@@ -15,6 +15,7 @@ model User {
   tf2      String?
   csgo     String?
   r6s      String?
+  nextCsgo String @unique
 }
 
 model Session {

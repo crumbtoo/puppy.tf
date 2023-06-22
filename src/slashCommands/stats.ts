@@ -14,11 +14,11 @@ import "dotenv/config";
 
 @Discord()
 @injectable() // for di injection
-export class Link {
+export class Stats {
   constructor(private readonly prismaClient: InjectPrismaClient) {}
 
   @Slash({ description: "Get the stats for a game. Ensure that your profile and ", name: "stats" })
-  async link(  
+  async stats(  
     @SlashChoice({ name: "Team Fortress 2", value: "tf2" })
     @SlashChoice({ name: "Counter-Strike: Global Offensive", value: "csgo" })
     @SlashChoice({ name: "Rainbow Six Siege", value: "r6s" })
@@ -75,8 +75,8 @@ export class Link {
         .setColor("#6046d4")
         .setTitle("Counter-Strike: Global Offensive")
         .addFields([
-          { name: "Kills", value: json.}
-        ])
+          { name: "Kills", value: json}
+        ]);
       } 
       case "tf2": {
 

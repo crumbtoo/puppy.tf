@@ -27,7 +27,7 @@ export class Link {
     game: string,
 
     @SlashOption({
-      description: "Name of your account. For Team Fortess 2 and Counter-Strike, this should be your Steam account's vanity URL identifier or your Steam ID. As an example, if your URL was `https://steamcommunity.com/id/example/`, you would use `example`.",
+      description: "Name of your account.",
       name: "name",
       required: true,
       type: ApplicationCommandOptionType.String,
