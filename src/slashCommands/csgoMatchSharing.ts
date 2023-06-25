@@ -13,7 +13,7 @@ import { InjectPrismaClient } from "../util/objects";
 export class MatchSharing {
   constructor(private readonly prismaClient: InjectPrismaClient) {}
 
-  @Slash({ description: "Authorize puppy to get more information about your gameplay. Reqs. a linked CSGO account.", name: "csgo-match-sharing" })
+  @Slash({ description: "Authorize puppy to get more information about your gameplay. Reqs. a linked CSGO account.", name: "match-sharing" })
   async matchsharing(  
     
     interaction: CommandInteraction

@@ -60,7 +60,7 @@ async function main() {
         await eventHandler.run();
         await serverHandler.run();
         await steamHandler.run();
-    //    await musicHandler.run();
+    //  await musicHandler.run();
 
         highClient.client.login(process.env["TOKEN"]);
 
